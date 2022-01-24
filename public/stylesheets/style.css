@@ -50,3 +50,11 @@
 .project-cards {
     margin-top: 2rem;
 }
+
+.logo {
+    color: transparent;
+    width: 10%;
+    height: 10%;
+    object-fit: cover;
+    text-align: center;
+}
