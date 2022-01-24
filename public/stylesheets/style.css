@@ -49,8 +49,17 @@
 
 .project-cards {
     margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
 }
 
+.card-item {
+    min-height: 19.75rem;
+}
+
+.card-description {
+    min-height: 3rem;
+}
 .logo {
     color: transparent;
     width: 10%;
