@@ -67,3 +67,44 @@
     object-fit: cover;
     text-align: center;
 }
+
+
+/*
+    Hamburger menu
+*/
+
+
+.drawer {
+    display: flex;
+    justify-content: right;
+}
+.sidenav li > a {
+    color: white;
+}
+#nav-toggle {
+    content: '';
+    cursor: pointer;
+    text-decoration:none;
+    color:#333;
+}
+#nav-toggle i {
+    font-size: 30px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .menu-bar-mobile {
+        display: block;
+    }
+    .menu-bar-non-mobile {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .menu-bar-mobile {
+        display: none;
+    }
+    .menu-bar-non-mobile {
+        display: block;
+    }
+}
