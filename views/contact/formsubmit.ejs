@@ -1,0 +1,17 @@
+<% include ../partials/header %>
+<script>
+    var time = 0;
+    setInterval(() => {
+        time += 1;
+        document.getElementById('count').innerHTML = 'It will redirect to the home page in ' + time +
+        ' seconds.';
+    }, 1000);
+    setTimeout(function() {
+        window.location.href = '/';
+    },3000);
+</script>
+<div class="container">
+    <h1>Thank you <%=name%> - (<%=email%>), I have received your message!</h1>
+    <p id="count"></p>
+</div>
+<% include ../partials/footer %>

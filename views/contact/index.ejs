@@ -2,28 +2,29 @@
 <div class="container contact-form">
   <!-- Page Content goes here -->
   <div class="row">
-    <form class="col s12" action="https://formspree.io/f/xnqwjrvy" method="post">
+    <!-- https://formspree.io/f/xnqwjrvy -->
+    <form class="col s12" action="/contact" method="post">
       <div class="row">
         <div class="input-field col s12">
-          <input placeholder="Name" id="first_name" type="text" class="validate" name="name">
+          <input required placeholder="Name" id="first_name" type="text" class="validate" name="name">
           <label for="first_name">Your Name</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="email" type="email" class="validate" name="email">
+          <input required id="email" type="email" class="validate" name="email">
           <label for="email">Email</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="phone" type="text" class="validate" name="phone">
+          <input required id="phone" type="text" class="validate" name="phone">
           <label for="phone">Your Phone</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <textarea id="message" class="materialize-textarea" name="message"></textarea>
+          <textarea required id="message" class="materialize-textarea" name="message"></textarea>
           <label for="message">Message</label>
         </div>
       </div>
