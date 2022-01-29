@@ -9,7 +9,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/',function(req, res, next) {
-  console.log(req);
   let formData = req.body;
   let redirectedUrl = url.format({
     pathname:'/contact/message',
@@ -18,9 +17,7 @@ router.post('/',function(req, res, next) {
   res.redirect(redirectedUrl)
 });
 
-router.get('/message',function(req, res) {
-  console.log(req.query);
-  
+router.get('/message',function(req, res) {  
   res.render('contact/formsubmit',req.query);
 });
 
