@@ -1,4 +1,3 @@
-~~~markdown
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 This is an assignment in Centennial College of COMP229-Web Application Development
