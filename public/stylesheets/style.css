@@ -90,9 +90,10 @@
 }
 #nav-toggle i {
     font-size: 30px;
+    color: white;
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 600px) {
     .menu-bar-mobile {
         display: block;
     }
@@ -101,7 +102,7 @@
     }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 600px) {
     .menu-bar-mobile {
         display: none;
     }
