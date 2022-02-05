@@ -40,18 +40,20 @@
     display: flex;
     text-align: left;
 }
+
 .profile-card-loc__icon {
     display: inline-flex;
     font-size: 27px;
     margin-right: 10px;
-  }
-  .profile-card-loc {
+}
+
+.profile-card-loc {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 18px;
     font-weight: 600;
-  }
+}
 
 .profile-card-cnt {
     margin-top: -45px;
@@ -68,16 +70,19 @@
     align-items: center;
     flex-wrap: wrap;
 }
+
 .profile-card-skills {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
 }
+
 .skill-item {
     margin: 5px;
 }
-  .profile-card-social__item {
+
+.profile-card-social__item {
     display: inline-flex;
     width: 55px;
     height: 55px;
@@ -92,8 +97,18 @@
     font-size: 21px;
     flex-shrink: 0;
     transition: all 0.3s;
-  }
+}
 
-  .card-email {
-      margin-left: 25px;
-  }
+.card-email {
+    margin-left: 25px;
+}
+
+@media screen and (max-width: 600px) {
+    .profile-card-loc {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 10px;
+        font-weight: 600;
+    }
+}

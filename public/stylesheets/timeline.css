@@ -162,7 +162,7 @@ time {
     margin-left: 20px;
   }
   .timeline ul li div {
-    width: calc(100vw - 91px);
+    width: calc(100vw - 120px);
   }
   .timeline ul li:nth-child(even) div {
     left: 45px;
