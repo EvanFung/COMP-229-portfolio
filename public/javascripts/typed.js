@@ -25,7 +25,7 @@ if(obj != null) {
 }
 if(headline != null) {
   var typed2 = new Typed('#typed_headline', {
-    strings: ['Programmer', 'Centennial College',],
+    strings: ['Programmer', 'Centennial College',"AI Student"],
     smartBackspace: true, // Default 
     loop:true,
     typeSpeed: 100,
