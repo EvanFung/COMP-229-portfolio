@@ -36,13 +36,12 @@ router.post('/register',(req, res, next) => {
   });
 });
 
-router.post('/login',passport.authenticate('local', { failureRedirect: '/user/login',successRedirect:'/business'}), (req, res, next) => {
+router.post('/login',passport.authenticate('local', { failureRedirect: '/user/login',successRedirect:'/business',failureFlash:true}), (req, res, next) => {
   req.session.save((err) => {
       if (err) {
           return next(err);
       }
       req.session.user = req.user;
-      // res.redirect('/business');
   });
 });
 
@@ -53,7 +52,7 @@ router.get('/logout',function(req,res) {
 });
 
 router.get('/login',function(req, res, next) {
-  res.render('login/login');
+  res.render('login/login', {user:req.user, message:req.flash('error')});
 });
 
 module.exports = router;

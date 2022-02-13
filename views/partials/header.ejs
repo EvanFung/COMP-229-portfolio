@@ -23,6 +23,7 @@
     <link rel="shortcut icon" href="#" />
 
 </head>
+
 <body class="body-color">
     <div class="menu-bar-mobile">
         <div class="grey darken-4 drawer">
@@ -39,7 +40,8 @@
                 <li><a href="/services">Services</a></li>
                 <li><a href="/contact">Contact</a></li>
             </ul>
-            <a id="nav-toggle" href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <a id="nav-toggle" href="#" data-target="slide-out" class="sidenav-trigger"><i
+                    class="material-icons">menu</i></a>
         </div>
     </div>
     <nav class="menu-bar-non-mobile">
@@ -79,3 +81,27 @@
           <li><a href="collapsible.html">Javascript</a></li>
           <li><a href="mobile.html">Mobile</a></li>
     </ul> -->
+    <div class="container">
+        <% if(error && error.length > 0) { %>
+        <div class="alert card red white-text">
+            <div class="card-content">
+                <p><i class="material-icons">report</i><span><%=error%></span></p>
+            </div>
+        </div>
+        <% } %>
+        <% if(success && success.length > 0) { %>
+        <div class="alert card green white-text">
+            <div class="card-content">
+                <p><i class="material-icons">report</i><span><%=success%></span></p>
+            </div>
+        </div>
+        <% } %>
+    </div>
+    <script>
+        var alertDiv = document.querySelector(".alert");
+        if (alertDiv) {
+            setTimeout(function () {
+                alertDiv.style.display = 'none';
+            }, 2000);
+        }
+    </script>

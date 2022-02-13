@@ -20,7 +20,8 @@ UserSchema.methods.toProfileJSONFor = function () {
         image: this.image || 'https://static.productionready.io/images/smiley-cyrus.jpg',
     };
 };
+var option = {usernameField: 'email',};
 UserSchema.plugin(uniqueValidator, { message: 'is already taken.' });
-UserSchema.plugin(passportLocalMongoose, {usernameField: 'email'});
+UserSchema.plugin(passportLocalMongoose, option);
 
 module.exports = mongoose.model('User', UserSchema);

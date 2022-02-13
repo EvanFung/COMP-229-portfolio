@@ -29,46 +29,4 @@
         </div>
     </div>
 </div>
-<script>
-    // var loginForm = document.querySelector("#loginForm");
-    // if (loginForm) {
-    //     loginForm.addEventListener("submit", function (event) {
-    //         submitForm(event, loginForm);
-    //     });
-    // }
-
-    // function submitForm(e, form) {
-    //     e.preventDefault();
-    //     var loginBtn = document.querySelector("#loginBtn");
-
-    //     var formData = buildJsonFormData(form);
-
-    //     axios.post('/user/login', {
-    //             user: {
-    //                 email: formData.email,
-    //                 password: formData.password
-    //             }
-    //         })
-    //         .then(function (response) {
-    //             // if (response.data.user) {
-    //             //     window.localStorage.setItem('token', response.data.user.token);
-    //             //     window.localStorage.setItem('user',JSON.stringify(response.data.user));
-    //             //     window.location.href = "/business";
-    //             // }
-    //             window.location.href = "/business";
-                
-    //         })
-    //         .catch(function (err) {
-    //             console.log(err);
-    //         });
-    // }
-
-    // function buildJsonFormData(form) {
-    //     var data = {};
-    //     for (var pair of new FormData(form)) {
-    //         data[pair[0]] = pair[1];
-    //     }
-    //     return data;
-    // }
-</script>
 <% include ../partials/footer %>
