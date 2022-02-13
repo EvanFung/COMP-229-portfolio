@@ -28,11 +28,25 @@ app.use(session({ secret: 'helloevan', cookie: { maxAge: 60000 }, resave: false,
 app.use(errorhandler());
 app.use(flash());
 
+
+
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+app.use(function(req,res,next) {
+  res.locals.currentUser = req.user;
+  res.locals.error = req.flash('error');
+  res.locals.success = req.flash('success');
+  next();
+});
+
+app.use(function(req,res, next) {
+  console.log(res.locals);
+  next();
+});
 
 mongoose.connect('mongodb://127.0.0.1:27017/portfolio');
 mongoose.set('debug',true);
@@ -55,7 +69,6 @@ app.use('/contact',contactRouter);
 app.use('/about',aboutmeRouter);
 app.use('/services',skillsRouter);
 app.use('/business',businessRouter);
-
 
 
 app.use(function(req, res, next) {
