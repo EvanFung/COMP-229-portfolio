@@ -57,6 +57,6 @@ UserSchema.methods.toProfileJSONFor = function () {
     };
 };
 UserSchema.plugin(uniqueValidator, { message: 'is already taken.' });
-UserSchema.plugin(passportLocalMongoose);
+UserSchema.plugin(passportLocalMongoose, {usernameField: 'email'});
 
 module.exports = mongoose.model('User', UserSchema);
