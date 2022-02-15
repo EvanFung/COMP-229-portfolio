@@ -43,11 +43,6 @@ app.use(function(req,res,next) {
   next();
 });
 
-app.use(function(req,res, next) {
-  console.log(res.locals);
-  next();
-});
-
 mongoose.connect('mongodb://127.0.0.1:27017/portfolio');
 mongoose.set('debug',true);
 /**

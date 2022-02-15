@@ -8,4 +8,4 @@ var BusinessContactSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 BusinessContactSchema.plugin(uniqueValidator, { message: 'is already taken.' });
-module.exports = mongoose.model('BusinessContact', UserSchema);
+module.exports = mongoose.model('BusinessContact', BusinessContactSchema);

@@ -1,6 +1,128 @@
 <% include ../partials/header %>
+
 <div class="container">
-BUSINESS
-<%currentUser%>
+    <div class="card card-contaner">
+        <div class="card-content contact-table">
+            <div class="row">
+                <div class="col s12 m12">
+                    <!-- <div id="myGrid" class="ag-theme-alpine business-table"></div> -->
+                    <span class="card-title grey-text text-darken-4 activator">Business Contacts <i class="material-icons right">more_vert</i></span>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Update</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Alvin</td>
+                                <td>Eclair</td>
+                                <td>$0.87</td>
+                                <td>
+                                    <button class='btn-floating btn-large waves-effect waves-light' type="submit"><i class="material-icons">update</i></button>
+                                </td>
+                                <td>
+                                    <button class='btn-floating btn-large waves-effect waves-light' type="submit"><i class="material-icons">delete</i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Alan</td>
+                                <td>Jellybean</td>
+                                <td>$3.76</td>
+                                <td>
+                                    <button class='btn-floating btn-large waves-effect waves-light' type="submit"><i class="material-icons">update</i></button>
+                                </td>
+                                <td>
+                                    <button class='btn-floating btn-large waves-effect waves-light' type="submit"><i class="material-icons">delete</i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Jonathan</td>
+                                <td>Lollipop</td>
+                                <td>$7.00</td>
+                                <td>
+                                    <button class='btn-floating btn-large waves-effect waves-light' type="submit"><i class="material-icons">update</i></button>
+                                </td>
+                                <td>
+                                    <button class='btn-floating btn-large waves-effect waves-light' type="submit"><i class="material-icons">delete</i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m12">
+                    <ul class="pagination">
+                        <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                        <li class="active"><a href="#!">1</a></li>
+                        <li class="waves-effect"><a href="#!">2</a></li>
+                        <li class="waves-effect"><a href="#!">3</a></li>
+                        <li class="waves-effect"><a href="#!">4</a></li>
+                        <li class="waves-effect"><a href="#!">5</a></li>
+                        <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="card-reveal contact-add">
+            <span class="card-title grey-text text-darken-4">Business Contact<i class="material-icons right">close</i></span>
+            <p>Here is some more information about this product that is only revealed once clicked on.</p>
+        </div>
+    </div>
 </div>
+<!-- <script type="text/javascript" charset="utf-8">
+    // specify the columns
+    const columnDefs = [{
+            field: "make",
+            sortable: true,
+            filter: true
+        },
+        {
+            field: "model",
+            sortable: true,
+            filter: true
+        },
+        {
+            field: "price",
+            sortable: true,
+            filter: true
+        }
+    ];
+
+    // specify the data
+    const rowData = [{
+            make: "Toyota",
+            model: "Celica",
+            price: 35000
+        },
+        {
+            make: "Ford",
+            model: "Mondeo",
+            price: 32000
+        },
+        {
+            make: "Porsche",
+            model: "Boxter",
+            price: 72000
+        }
+    ];
+
+    // let the grid know which columns and what data to use
+    const gridOptions = {
+        columnDefs: columnDefs,
+        rowData: rowData,
+    };
+
+    // lookup the container we want the Grid to use
+    const eGridDiv = document.querySelector('#myGrid');
+
+    // create the grid passing in the div to use together with the columns & data we want to use
+    new agGrid.Grid(eGridDiv, gridOptions);
+</script> -->
 <% include ../partials/footer %>
