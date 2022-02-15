@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(session({ secret: 'helloevan', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false  }));
+app.use(session({ secret: 'helloevan', cookie: { maxAge: 1000 * 60 * 60 *24 }, resave: false, saveUninitialized: false  }));
 app.use(errorhandler());
 app.use(flash());
 
