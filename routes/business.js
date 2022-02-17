@@ -2,7 +2,7 @@
  * @Author: Wenhao FENG 
  * @Date: 2022-02-12 22:37:20 
  * @Last Modified by: Wenhao FENG
- * @Last Modified time: 2022-02-17 16:20:16
+ * @Last Modified time: 2022-02-17 16:32:34
  */
 var mongoose = require('mongoose');
 var express = require('express');
@@ -32,19 +32,18 @@ router.post('/',function (req, res, next) {
 });
 //Update business contact
 router.put('/:id', function (req, res, next) {
-  // BusinessContact.findById(req.body.id).then(function (bc) {
-  //   if (!bc) {
-  //     req.flash('error', 'something went wrong');
-  //     res.redirect('back');
-  //   }
-  //   return res.json({ businessContact: bc });
-  // }).catch(next);
+  console.log("hello world");
+  console.log(req.params.id);
+  console.log(req.body.businessContact);
   BusinessContact.findByIdAndUpdate(req.params.id,req.body.businessContact, function(err, updatedBc) {
     if(err) {
       console.log(err);
     } else {
       res.redirect('/business/'+req.params.id);
     }
+  });
+  res.json({
+    hello:"world"
   });
 });
 
