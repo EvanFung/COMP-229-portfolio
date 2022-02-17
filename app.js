@@ -12,6 +12,8 @@ var session = require('express-session')
 var flash = require('connect-flash');
 var LocalStrategy = require('passport-local').Strategy;
 const User = require('./models/User');
+var methodOverride = require('method-override');
+
 
 
 // view engine setup
@@ -25,7 +27,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ secret: 'helloevan', cookie: { maxAge: 1000 * 60 * 60 *24 }, resave: false, saveUninitialized: false  }));
-app.use(errorhandler());
+// app.use(errorhandler());
+app.use(methodOverride("_method"));
 app.use(flash());
 
 
@@ -44,7 +47,7 @@ app.use(function(req,res,next) {
 });
 
 mongoose.connect('mongodb://127.0.0.1:27017/portfolio');
-mongoose.set('debug',true);
+// mongoose.set('debug',true);
 /**
  * router
  */

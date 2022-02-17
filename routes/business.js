@@ -2,40 +2,63 @@
  * @Author: Wenhao FENG 
  * @Date: 2022-02-12 22:37:20 
  * @Last Modified by: Wenhao FENG
- * @Last Modified time: 2022-02-15 00:59:23
+ * @Last Modified time: 2022-02-17 16:20:16
  */
 var mongoose = require('mongoose');
 var express = require('express');
 var router = express.Router();
 var middleware = require('../middleware');
-const BusinessContact = mongoose.model('BusinessContact');
+const BusinessContact = require('../models/BusinessContact');
 /* GET users listing. */
 router.get('/', middleware.isLoggedIn, function (req, res, next) {
   res.render('business/');
 });
 //Create business contact
-router.post('/', middleware.isLoggedIn, function (req, res, next) {
-  var businessContact = new BusinessContact();
-  businessContact.name = req.body.name;
-  businessContact.email = req.body.email;
-  businessContact.number = req.body.number;
+router.post('/',function (req, res, next) {
 
-  businessContact.save(function (err, data) {
-    return res.json({ businessContact: data });
-  }).catch(next);
+  var newBusiness = {
+    name:req.body.name,
+    email:req.body.email,
+    number:req.body.number,
+  };
+  BusinessContact.create(newBusiness,function(err, data) {
+    if(err) {
+      console.log(err);
+    } else {
+      res.redirect('/business');
+    }
+  });
+
 });
 //Update business contact
-router.put('/', middleware.isLoggedIn, function (req, res, next) {
-  BusinessContact.findById(req.body.id).then(function (bc) {
-    if (!bc) {
-      req.flash('error', 'something went wrong');
-      res.redirect('back');
+router.put('/:id', function (req, res, next) {
+  // BusinessContact.findById(req.body.id).then(function (bc) {
+  //   if (!bc) {
+  //     req.flash('error', 'something went wrong');
+  //     res.redirect('back');
+  //   }
+  //   return res.json({ businessContact: bc });
+  // }).catch(next);
+  BusinessContact.findByIdAndUpdate(req.params.id,req.body.businessContact, function(err, updatedBc) {
+    if(err) {
+      console.log(err);
+    } else {
+      res.redirect('/business/'+req.params.id);
     }
-    return res.json({ businessContact: bc });
-  }).catch(next);
+  });
 });
+
+router.get('/:id/edit',function(req, res) {
+  BusinessContact.findById(req.params.id,function(err, bc) {
+    if(err) {
+      console.log(err);
+    }
+    res.render('business/edit',{businesscontact: bc});
+  });
+});
+
 //List
-router.get('/list', middleware.isLoggedIn, async function (req, res, next) {
+router.get('/list',  async function (req, res, next) {
   var limit = 20;
   var offset = 0;
 
