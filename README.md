@@ -4,7 +4,11 @@ This is an assignment in Centennial College of COMP229-Web Application Developme
  - Create your Personal Portfolio Website using ExpressJS and implementing the EJS templating
 engine. Your site must be hosted live on a cloud service such as Microsoft Azure, Heroku, or Digital Ocean. 
 
-
+### Test login
+```
+evan@gmail.com
+password
+```
 
 ### Built With
 
