@@ -32,10 +32,21 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="/business/<%=bcList[count]._id%>/delete"
-                                        class='btn-floating btn-large waves-effect waves-light' type="submit">
+                                    <a href="#modal<%=bcList[count]._id%>"
+                                        class='btn-floating btn-large waves-effect waves-light modal-trigger' type="submit">
                                         <i class="material-icons">delete</i>
                                     </a>
+                                    <!-- Modal Structure -->
+                                    <div id="modal<%=bcList[count]._id%>" class="modal">
+                                      <div class="modal-content">
+                                        <h4>Are you sure to delete this contact?</h4>
+                                        <p><%=bcList[count].name%></p>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <a href="/business/<%=bcList[count]._id%>/delete" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+                                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+                                      </div>
+                                    </div>
                                 </td>
                             </tr>
                             <%}%>
@@ -68,6 +79,12 @@
             </div>
         </div>
         <% include ../partials/businessForm %>
-                </div>
-            </div>
+    </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
+  });
+</script>
 <% include ../partials/footer %>

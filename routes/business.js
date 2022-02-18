@@ -2,7 +2,7 @@
  * @Author: Wenhao FENG 
  * @Date: 2022-02-12 22:37:20 
  * @Last Modified by: Wenhao FENG
- * @Last Modified time: 2022-02-17 21:07:34
+ * @Last Modified time: 2022-02-17 21:34:33
  */
 var mongoose = require('mongoose');
 var express = require('express');
@@ -88,7 +88,7 @@ router.get('/',  async function (req, res, next) {
 
 });
 //DELETE 
-router.delete('/:id/delete', function (req, res, next) {
+router.get('/:id/delete', function (req, res, next) {
   BusinessContact.findByIdAndRemove(req.params.id, function (err) {
     if (err) {
       req.flash('error', 'something went wrong');
