@@ -13,7 +13,7 @@ var flash = require('connect-flash');
 var LocalStrategy = require('passport-local').Strategy;
 const User = require('./models/User');
 var methodOverride = require('method-override');
-
+const config = require('./config')
 
 
 // view engine setup
@@ -46,7 +46,9 @@ app.use(function(req,res,next) {
   next();
 });
 
-mongoose.connect('mongodb://127.0.0.1:27017/portfolio');
+console.log(config.mongoURI);
+
+mongoose.connect(config.mongoURI);
 // mongoose.set('debug',true);
 /**
  * router
