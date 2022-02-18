@@ -2,7 +2,7 @@
  * @Author: Wenhao FENG 
  * @Date: 2022-02-12 22:37:20 
  * @Last Modified by: Wenhao FENG
- * @Last Modified time: 2022-02-17 16:35:05
+ * @Last Modified time: 2022-02-17 21:07:34
  */
 var mongoose = require('mongoose');
 var express = require('express');
@@ -10,9 +10,9 @@ var router = express.Router();
 var middleware = require('../middleware');
 const BusinessContact = require('../models/BusinessContact');
 /* GET users listing. */
-router.get('/', middleware.isLoggedIn, function (req, res, next) {
-  res.render('business/');
-});
+// router.get('/', middleware.isLoggedIn, function (req, res, next) {
+//   res.render('business/');
+// });
 //Create business contact
 router.post('/',function (req, res, next) {
 
@@ -34,17 +34,18 @@ router.post('/',function (req, res, next) {
 router.put('/:id', function (req, res, next) {
   console.log("hello world");
   console.log(req.params.id);
-  console.log(req.body.businessContact);
-  BusinessContact.findByIdAndUpdate(req.params.id,req.body.businessContact, function(err, updatedBc) {
+  console.log(req.body);
+  var businessContact = {
+    name:req.body.name,
+    email:req.body.email,
+    number:req.body.number,
+  };
+  BusinessContact.findByIdAndUpdate(req.params.id,businessContact, function(err, updatedBc) {
     if(err) {
       console.log(err);
-    } else {
-      res.redirect('/business/'+req.params.id);
     }
   });
-  res.json({
-    hello:"world"
-  });
+  res.redirect('/business');
 });
 
 router.get('/:id/edit',function(req, res) {
@@ -57,9 +58,11 @@ router.get('/:id/edit',function(req, res) {
 });
 
 //List
-router.get('/list',  async function (req, res, next) {
-  var limit = 20;
+router.get('/',  async function (req, res, next) {
+  var limit = 10;
+  //offset = (page - 1) * itemsPerPage + 1
   var offset = 0;
+  var currentPage = 1;
 
   if (typeof req.query.limit !== 'undefined') {
     limit = req.query.limit;
@@ -69,15 +72,23 @@ router.get('/list',  async function (req, res, next) {
     offset = req.query.offset;
   }
 
-  var bcList = await BusinessContact.find().limit(Number(limit)).skip(Number(offset)).exec();
+  if (typeof req.query.currentPage !== 'undefined') {
+    currentPage = req.query.currentPage;
+  }
 
-  return res.json({
-    list: bcList
+  var bcList = await BusinessContact.find().limit(Number(limit)).skip(Number(offset)).exec();
+  var pages = Math.ceil(bcList.length/limit);
+  return res.render('business/',{
+    bcList,
+    offset,
+    limit,
+    pages,
+    currentPage
   });
 
 });
 //DELETE 
-router.delete('/:id', function (req, res, next) {
+router.delete('/:id/delete', function (req, res, next) {
   BusinessContact.findByIdAndRemove(req.params.id, function (err) {
     if (err) {
       req.flash('error', 'something went wrong');

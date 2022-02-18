@@ -6,7 +6,8 @@
             <div class="row">
                 <div class="col s12 m12">
                     <!-- <div id="myGrid" class="ag-theme-alpine business-table"></div> -->
-                    <span class="card-title grey-text text-darken-4 activator">Business Contacts <i class="material-icons right">more_vert</i></span>
+                    <span class="card-title grey-text text-darken-4 activator">Business Contacts <i
+                            class="material-icons right">add</i></span>
                     <table>
                         <thead>
                             <tr>
@@ -19,39 +20,25 @@
                         </thead>
 
                         <tbody>
+                            <% for(let count = 0;count < bcList.length;count++) { %>
                             <tr>
-                                <td>Alvin</td>
-                                <td>Eclair</td>
-                                <td>$0.87</td>
+                                <td><%=bcList[count].name%></td>
+                                <td><%=bcList[count].email%></td>
+                                <td><%=bcList[count].number%></td>
                                 <td>
-                                    <button class='btn-floating btn-large waves-effect waves-light' type="submit"><i class="material-icons">update</i></button>
+                                    <a href="/business/<%=bcList[count]._id%>/edit"
+                                        class='btn-floating btn-large waves-effect waves-light' type="submit">
+                                        <i class="material-icons">update</i>
+                                    </a>
                                 </td>
                                 <td>
-                                    <button class='btn-floating btn-large waves-effect waves-light' type="submit"><i class="material-icons">delete</i></button>
+                                    <a href="/business/<%=bcList[count]._id%>/delete"
+                                        class='btn-floating btn-large waves-effect waves-light' type="submit">
+                                        <i class="material-icons">delete</i>
+                                    </a>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Alan</td>
-                                <td>Jellybean</td>
-                                <td>$3.76</td>
-                                <td>
-                                    <button class='btn-floating btn-large waves-effect waves-light' type="submit"><i class="material-icons">update</i></button>
-                                </td>
-                                <td>
-                                    <button class='btn-floating btn-large waves-effect waves-light' type="submit"><i class="material-icons">delete</i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Jonathan</td>
-                                <td>Lollipop</td>
-                                <td>$7.00</td>
-                                <td>
-                                    <button class='btn-floating btn-large waves-effect waves-light' type="submit"><i class="material-icons">update</i></button>
-                                </td>
-                                <td>
-                                    <button class='btn-floating btn-large waves-effect waves-light' type="submit"><i class="material-icons">delete</i></button>
-                                </td>
-                            </tr>
+                            <%}%>
                         </tbody>
                     </table>
                 </div>
@@ -59,70 +46,28 @@
             <div class="row">
                 <div class="col s12 m12">
                     <ul class="pagination">
-                        <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-                        <li class="active"><a href="#!">1</a></li>
-                        <li class="waves-effect"><a href="#!">2</a></li>
-                        <li class="waves-effect"><a href="#!">3</a></li>
-                        <li class="waves-effect"><a href="#!">4</a></li>
-                        <li class="waves-effect"><a href="#!">5</a></li>
-                        <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                        <% if(currentPage == 1){ %>
+                            <li class="disabled"><a href="#"><i class="material-icons">chevron_left</i></a></li>
+                        <% } else { %>
+                            <li><a href="/business/?limit=10&offset=<%=(currentPage - 2) * 10 + 1%>&currentPage=<%=currentPage-1%>"><i class="material-icons">chevron_left</i></a></li>
+                        <% } %>
+                        <% for(let page = 1;page <= pages;page++){ %>
+                            <%if(page==currentPage) {%>
+                            <li class="active"><a href="/business/?limit=10&offset=<%=(page-1)*10%>&currentPage=<%=page%>"><%=page%></a></li>
+                            <%} else {%>
+                            <li><a href="/business/?limit=10&offset=<%=(page-1)*10%>&currentPage=<%=page%>"><%=page%></a></li>
+                            <%}%>
+                        <%}%>
+                        <% if(currentPage <= pages) { %>
+                        <li class="disabled"><a href="#"><i class="material-icons">chevron_right</i></a></li>
+                        <% } else { %>
+                        <li class="waves-effect"><a href="/business/?limit=10&offset=<%=(currentPage) * 10 + 1%>&currentPage=<%=currentPage-1%>"><i class="material-icons">chevron_right</i></a></li>
+                        <%}%>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="card-reveal contact-add">
-            <span class="card-title grey-text text-darken-4">Business Contact<i class="material-icons right">close</i></span>
-            <p>Here is some more information about this product that is only revealed once clicked on.</p>
-        </div>
-    </div>
-</div>
-<!-- <script type="text/javascript" charset="utf-8">
-    // specify the columns
-    const columnDefs = [{
-            field: "make",
-            sortable: true,
-            filter: true
-        },
-        {
-            field: "model",
-            sortable: true,
-            filter: true
-        },
-        {
-            field: "price",
-            sortable: true,
-            filter: true
-        }
-    ];
-
-    // specify the data
-    const rowData = [{
-            make: "Toyota",
-            model: "Celica",
-            price: 35000
-        },
-        {
-            make: "Ford",
-            model: "Mondeo",
-            price: 32000
-        },
-        {
-            make: "Porsche",
-            model: "Boxter",
-            price: 72000
-        }
-    ];
-
-    // let the grid know which columns and what data to use
-    const gridOptions = {
-        columnDefs: columnDefs,
-        rowData: rowData,
-    };
-
-    // lookup the container we want the Grid to use
-    const eGridDiv = document.querySelector('#myGrid');
-
-    // create the grid passing in the div to use together with the columns & data we want to use
-    new agGrid.Grid(eGridDiv, gridOptions);
-</script> -->
+        <% include ../partials/businessForm %>
+                </div>
+            </div>
 <% include ../partials/footer %>
