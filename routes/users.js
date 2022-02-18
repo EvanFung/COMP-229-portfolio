@@ -7,17 +7,6 @@ var router = express.Router();
 var User = mongoose.model('User');
 
 
-/* GET user. */
-// router.get('/',auth.required, function(req, res, next) {
-//   User.findById(req.playload.id).then(function(user) {
-//     if(!user) {
-//       return res.sendStatus(401);
-//     }
-//     return res.json({user: user.toAuthJSON()});
-//   }).catch(next)
-// });
-
-
 
 router.post('/register',(req, res, next) => {
   User.register(new User({username:req.body.username,email:req.body.email}),req.body.password, (err, user) => {
