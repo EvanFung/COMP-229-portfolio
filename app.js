@@ -1,4 +1,5 @@
 // <!--  WEN HAO FENG 301223017 -->
+//GIT PUSH HEROKU
 var express = require('express');
 var app = express();
 var path = require('path');
@@ -49,7 +50,7 @@ app.use(function(req,res,next) {
 console.log(config.mongoURI);
 
 mongoose.connect(config.mongoURI);
-// mongoose.set('debug',true);
+mongoose.set('debug',true);
 /**
  * router
  */
