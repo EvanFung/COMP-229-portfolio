@@ -2,7 +2,7 @@
  * @Author: Wenhao FENG 
  * @Date: 2022-02-12 22:37:20 
  * @Last Modified by: Wenhao FENG
- * @Last Modified time: 2022-02-17 21:34:33
+ * @Last Modified time: 2022-02-17 22:49:52
  */
 var mongoose = require('mongoose');
 var express = require('express');
@@ -14,7 +14,7 @@ const BusinessContact = require('../models/BusinessContact');
 //   res.render('business/');
 // });
 //Create business contact
-router.post('/',function (req, res, next) {
+router.post('/',middleware.isLoggedIn,function (req, res, next) {
 
   var newBusiness = {
     name:req.body.name,
@@ -24,14 +24,17 @@ router.post('/',function (req, res, next) {
   BusinessContact.create(newBusiness,function(err, data) {
     if(err) {
       console.log(err);
+      req.flash('error', err.name);
+      res.redirect('back');
     } else {
+      req.flash('success', 'business contact added');
       res.redirect('/business');
     }
   });
 
 });
 //Update business contact
-router.put('/:id', function (req, res, next) {
+router.put('/:id',middleware.isLoggedIn, function (req, res, next) {
   console.log("hello world");
   console.log(req.params.id);
   console.log(req.body);
@@ -43,22 +46,27 @@ router.put('/:id', function (req, res, next) {
   BusinessContact.findByIdAndUpdate(req.params.id,businessContact, function(err, updatedBc) {
     if(err) {
       console.log(err);
+      req.flash('error', 'something went wrong');
+      res.redirect('back');
     }
   });
+  req.flash('success', 'business contact updated');
   res.redirect('/business');
 });
 
-router.get('/:id/edit',function(req, res) {
+router.get('/:id/edit',middleware.isLoggedIn,function(req, res) {
   BusinessContact.findById(req.params.id,function(err, bc) {
     if(err) {
       console.log(err);
+      req.flash('error', 'something went wrong');
+      res.redirect('back');
     }
     res.render('business/edit',{businesscontact: bc});
   });
 });
 
 //List
-router.get('/',  async function (req, res, next) {
+router.get('/',middleware.isLoggedIn,  async function (req, res, next) {
   var limit = 10;
   //offset = (page - 1) * itemsPerPage + 1
   var offset = 0;
@@ -76,8 +84,15 @@ router.get('/',  async function (req, res, next) {
     currentPage = req.query.currentPage;
   }
 
+  if(offset <0 || limit < 10 || currentPage < 1) {
+    req.flash('error', 'something went wrong');
+    res.redirect('back');
+  }
+
+  var total = await BusinessContact.count();
+
   var bcList = await BusinessContact.find().limit(Number(limit)).skip(Number(offset)).exec();
-  var pages = Math.ceil(bcList.length/limit);
+  var pages = Math.ceil(total/limit);
   return res.render('business/',{
     bcList,
     offset,
@@ -88,7 +103,7 @@ router.get('/',  async function (req, res, next) {
 
 });
 //DELETE 
-router.get('/:id/delete', function (req, res, next) {
+router.get('/:id/delete',middleware.isLoggedIn, function (req, res, next) {
   BusinessContact.findByIdAndRemove(req.params.id, function (err) {
     if (err) {
       req.flash('error', 'something went wrong');

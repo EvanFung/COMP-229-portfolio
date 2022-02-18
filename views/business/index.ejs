@@ -14,7 +14,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
-                                <th>Update</th>
+                                <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
                         </thead>
@@ -57,22 +57,12 @@
             <div class="row">
                 <div class="col s12 m12">
                     <ul class="pagination">
-                        <% if(currentPage == 1){ %>
-                            <li class="disabled"><a href="#"><i class="material-icons">chevron_left</i></a></li>
-                        <% } else { %>
-                            <li><a href="/business/?limit=10&offset=<%=(currentPage - 2) * 10 + 1%>&currentPage=<%=currentPage-1%>"><i class="material-icons">chevron_left</i></a></li>
-                        <% } %>
                         <% for(let page = 1;page <= pages;page++){ %>
                             <%if(page==currentPage) {%>
                             <li class="active"><a href="/business/?limit=10&offset=<%=(page-1)*10%>&currentPage=<%=page%>"><%=page%></a></li>
                             <%} else {%>
                             <li><a href="/business/?limit=10&offset=<%=(page-1)*10%>&currentPage=<%=page%>"><%=page%></a></li>
                             <%}%>
-                        <%}%>
-                        <% if(currentPage <= pages) { %>
-                        <li class="disabled"><a href="#"><i class="material-icons">chevron_right</i></a></li>
-                        <% } else { %>
-                        <li class="waves-effect"><a href="/business/?limit=10&offset=<%=(currentPage) * 10 + 1%>&currentPage=<%=currentPage-1%>"><i class="material-icons">chevron_right</i></a></li>
                         <%}%>
                     </ul>
                 </div>
