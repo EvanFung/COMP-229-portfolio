@@ -15,6 +15,7 @@ var LocalStrategy = require('passport-local').Strategy;
 const User = require('./models/User');
 var methodOverride = require('method-override');
 const config = require('./config')
+var favicon = require('serve-favicon')
 
 
 // view engine setup
@@ -31,6 +32,8 @@ app.use(session({ secret: 'helloevan', cookie: { maxAge: 1000 * 60 * 60 *24 }, r
 // app.use(errorhandler());
 app.use(methodOverride("_method"));
 app.use(flash());
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+
 
 
 
