@@ -1,5 +1,5 @@
 // <!--  WEN HAO FENG 301223017 -->
-//GIT PUSH HEROKU
+//GIT PUSH HEROKU MAIN
 var express = require('express');
 var app = express();
 var path = require('path');
@@ -7,11 +7,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
 var cors = require('cors');
-var errorhandler = require('errorhandler');
 var passport = require('passport');
 var session = require('express-session')
 var flash = require('connect-flash');
-var LocalStrategy = require('passport-local').Strategy;
 const User = require('./models/User');
 var methodOverride = require('method-override');
 const config = require('./config')
